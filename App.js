@@ -7,6 +7,7 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  Keyboard,
 } from "react-native";
 import Task from './components/Task';
 export default function App() {
@@ -14,9 +15,18 @@ export default function App() {
   const [taskItems,setTaskItems] = useState([]);
 
   const handleAddTask = () => {
+    Keyboard.dismiss();
     setTaskItems([...taskItems,task]);
     setTask(null);
   }
+
+  const completeTask = (index) => {
+    let itemsCopy = [...taskItems];
+    itemsCopy.splice(index,1);
+    setTaskItems(itemsCopy);
+  }
+
+
   return (
     <View style={styles.container}>
       {/* Todays tasks*/}
@@ -25,8 +35,13 @@ export default function App() {
         <View style={styles.items}>
           {/* this is where the tasks will go */}
           {
-            taskItems.map((item)=>{
-              <Task text={item}/>
+            taskItems.map((item,index)=>{
+              return(
+                <TouchableOpacity key={index} onPress={()=>completeTask(index)}>
+                  <Task text={item}/>
+                </TouchableOpacity>
+              )
+              
             })
           }
         </View>
