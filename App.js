@@ -10,7 +10,8 @@ import {
 } from "react-native";
 import Task from './components/Task';
 export default function App() {
-  const [task,setTask] = useState();
+  const [task,setTask] = useState();//so we are getting the task now
+
   const [taskItems,setTaskItems] = useState([]);
 
   const handleAddTask = () => {
@@ -36,7 +37,7 @@ export default function App() {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={styles.writeTaskWrapper}
       >
-        <TextInput style={styles.input} placeholder={"Write a task"} value={task} onChange={text=>setTask(text)}/>
+        <TextInput style={styles.input} placeholder={"Write a task"}  onChangeText={(text)=>setTask(text)} />
         <TouchableOpacity onPress={()=>handleAddTask()}>
           <View style={styles.addWrapper}>
             <Text style={styles.addText}>+</Text>
