@@ -11,13 +11,14 @@ import {
 import Task from './components/Task';
 export default function App() {
   const [task,setTask] = useState();//so we are getting the task now
-
-  const [taskItems,setTaskItems] = useState([]);
+  console.log(task);
+  const [taskItems,setTaskItems] = useState([]);//this is also working properly
 
   const handleAddTask = () => {
     setTaskItems([...taskItems,task]);
     setTask(null);
   }
+  console.log(taskItems);
   return (
     <View style={styles.container}>
       {/* Todays tasks*/}
